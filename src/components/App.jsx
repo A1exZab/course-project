@@ -1,4 +1,4 @@
-import '../styles.css';
+import '../../styles.css';
 import { useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { Badge } from 'react-bootstrap';
