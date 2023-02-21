@@ -1,17 +1,19 @@
-import React from 'react';
-import User from './user';
+import React from 'react'
+import User from './user'
 
-export default function Users({ users, handleDeleteButton }) {
-	console.log(users);
+export function Users({ users, onClickDeleteButton, onClickBookmark }) {
 	return (
 		<>
 			{users.map((user) => {
 				return (
-					<tr key={user._id}>
-						<User handleDeleteButton={handleDeleteButton} {...user} />
-					</tr>
-				);
+					<User
+						key={user._id}
+						onClickDeleteButton={onClickDeleteButton}
+						onClickBookmark={onClickBookmark}
+						{...user}
+					/>
+				)
 			})}
 		</>
-	);
+	)
 }

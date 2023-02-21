@@ -1,24 +1,29 @@
-import '../../styles.css';
-import { useState } from 'react';
-import { Table } from 'react-bootstrap';
-import { Badge } from 'react-bootstrap';
-import Users from './users';
-import API from '../API';
+import '../../styles.css'
+import { useState } from 'react'
+import { Table } from 'react-bootstrap'
+import { Users } from './users'
+import API from '../API'
+import { SearchStatus } from './SearchStatus'
 
 function App() {
-	const [users, setUsers] = useState(API.users.fetchAll());
+	const [users, setUsers] = useState(API.users.fetchAll())
 
 	const handleDeleteButton = (id) => {
-		setUsers(users.filter((user) => user._id !== id));
-	};
+		setUsers(users.filter((user) => user._id !== id))
+	}
+
+	const handleBookmark = (id) => {
+		const updateUsers = users.map((user) => {
+			return user._id === id ? { ...user, bookmark: !user.bookmark } : user
+		})
+		setUsers(updateUsers)
+	}
 
 	return (
 		<div className='App'>
 			{users.length > 0 ? (
 				<>
-					<Badge style={{ fontSize: '20px', marginBottom: '5px' }}>
-						Тусует с тобой сегодня: {users.length} человек(а)
-					</Badge>
+					<SearchStatus usersAmount={users.length} />
 					<Table bordered='rows' variant='dark'>
 						<thead>
 							<tr>
@@ -27,21 +32,24 @@ function App() {
 								<th>Профессия</th>
 								<th>Встретился, раз</th>
 								<th>Оценка</th>
+								<th>Избранное</th>
 								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<Users users={users} handleDeleteButton={handleDeleteButton} />
+							<Users
+								users={users}
+								onClickDeleteButton={handleDeleteButton}
+								onClickBookmark={handleBookmark}
+							/>
 						</tbody>
 					</Table>
 				</>
 			) : (
-				<Badge style={{ fontSize: '50px', marginBottom: '5px' }} bg='danger'>
-					Cегодня с тобой никто не тусует 😒
-				</Badge>
+				<SearchStatus usersAmount={users.length} />
 			)}
 		</div>
-	);
+	)
 }
 
-export default App;
+export default App
