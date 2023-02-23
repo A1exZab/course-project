@@ -6,7 +6,7 @@ import './styles.css'
 
 export function Bookmark({ onClickBookmark, id, bookmark }) {
 	return (
-		<div className='container'>
+		<div className='bookmark__container'>
 			<img onClick={() => onClickBookmark(id)} src={bookmark ? added : plus} alt='' />
 		</div>
 	)

@@ -1,4 +1,10 @@
-.container {
+.search-status {
+	display: flex;
+	justify-content: center;
+	margin-top: 6px;
+}
+
+.search-status__container {
 	display: flex;
 	justify-content: center;
 	align-items: center;

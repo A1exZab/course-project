@@ -1,5 +1,6 @@
 import React from 'react'
 import User from './user'
+import PropTypes from 'prop-types'
 
 export function Users({ users, onClickDeleteButton, onClickBookmark }) {
 	return (
@@ -16,4 +17,10 @@ export function Users({ users, onClickDeleteButton, onClickBookmark }) {
 			})}
 		</>
 	)
+}
+
+Users.propTypes = {
+	users: PropTypes.array.isRequired,
+	onClickDeleteButton: PropTypes.func.isRequired,
+	onClickBookmark: PropTypes.func.isRequired
 }
